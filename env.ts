@@ -27,4 +27,6 @@ export default Env.rules({
   MYSQL_PASSWORD: Env.schema.string.optional(),
   MYSQL_DB_NAME: Env.schema.string(),
   DB_CONNECTION: Env.schema.string(),
+  PAYSTACK_PUBLIC: Env.schema.string(),
+  PAYSTACK_SECRET: Env.schema.string(),
 });

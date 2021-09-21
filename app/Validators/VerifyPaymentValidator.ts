@@ -1,7 +1,7 @@
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
-export default class SignInValidator {
+export default class VerifyPaymentValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,9 +24,7 @@ export default class SignInValidator {
    *    ```
    */
   public schema = schema.create({
-    username: schema.string.optional({ trim: true }, []),
-    email: schema.string.optional({ trim: true }, [rules.email()]),
-    password: schema.string({ trim: true }, [rules.required()]),
+    reference: schema.string({ trim: true }, [rules.required()]),
   });
 
   /**
@@ -44,7 +42,6 @@ export default class SignInValidator {
     "*": (field, rule) => {
       return `${rule} validation error on ${field}`;
     },
-    required: "The {{ field }} is required to sign in",
-    "email.email": "Email must be a valid email format",
+    required: "The {{ field }} is required to fund wallet",
   };
 }

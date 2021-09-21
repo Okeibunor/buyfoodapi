@@ -8,7 +8,6 @@ import {
   hasOne,
 } from "@ioc:Adonis/Lucid/Orm";
 import Hash from "@ioc:Adonis/Core/Hash";
-import Product from "./Product";
 import Wallet from "./Wallet";
 import WalletService from "App/Features/Core/WalletManagement";
 

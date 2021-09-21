@@ -1,4 +1,5 @@
 import { AuthContract } from "@ioc:Adonis/Addons/Auth";
+import { TransactionEntity } from "./enum";
 
 export interface ISignUp {
     username: string
@@ -18,4 +19,19 @@ export interface ISignIn {
   }
 export interface IWalletCreation {
     user_id: number
+  }
+export interface IWalletCredit {
+    user_id: number,
+    amount: number
+  }
+export interface IWalletFunding {
+    amount: number,
+    reference: string
+  }
+export interface IInitializePayment {
+    amount: number,
+    reference: string
+    user_id: number
+    email: string
+    entity: TransactionEntity
   }

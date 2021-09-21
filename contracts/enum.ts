@@ -4,6 +4,19 @@ export enum MaritalStatus {
   SAPERATED = "saperated",
 }
 
+export enum TransactionStatus {
+  PENDING = "pending",
+  FAILED = "failed",
+  ABANDONED = "abandoned",
+  SUCCESSFUL = "successful"
+}
+
+export enum TransactionEntity {
+  WALLETFUNDING = "walletfunding",
+  PAYOUTS = "payouts",
+  WALLETTRANSFERS = "wallettransfers"
+}
+
 export enum Gender {
   MALE = "male",
   FEMALE = "female",

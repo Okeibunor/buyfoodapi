@@ -7,18 +7,14 @@ import SignInValidator from "App/Validators/SignInValidator";
 
 export default class AuthenticationController {
   public async registration({ request, response }) {
-    const get_sign_up_data = await request.validate(RegisterValidator);
-    let signUpResponse = await new SignUpFeature({
-      ...get_sign_up_data,
-    }).sign_up({});
+    const props = await request.validate(RegisterValidator);
+    let signUpResponse = await SignUpFeature.sign_up(props);
 
     return response.status(signUpResponse.status_code).send(signUpResponse);
   }
   public async signin({ request, response, auth }) {
-    const get_sign_in_data = await request.validate(SignInValidator);
-    let signInResponse = await new SignInFeature({
-      ...get_sign_in_data,
-    }).sign_in({ auth });
+    const props = await request.validate(SignInValidator);
+    let signInResponse = await  SignInFeature.sign_in({ ...props, auth });
 
     return response.status(signInResponse.status_code).send(signInResponse);
   }

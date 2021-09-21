@@ -8,13 +8,14 @@
 
 import User from "App/Models/User";
 import CreateOperationResponse from "App/Utilities/CreateOperationResponse";
+import { ISignUp } from "Contracts/interface";
 
 export default class SignUpFeature {
   protected data;
   constructor(data) {
     this.data = data;
   }
-  async sign_up({}) {
+  static async sign_up(data: ISignUp) {
     const {
       first_name,
       last_name,
@@ -24,7 +25,7 @@ export default class SignUpFeature {
       username,
       password,
       address,
-    } = this.data;
+    } = data;
 
     try {
       const new_user = await User.create({

@@ -10,16 +10,17 @@ import Hash from "@ioc:Adonis/Core/Hash";
 
 import User from "App/Models/User";
 import CreateOperationResponse from "App/Utilities/CreateOperationResponse";
+import { ISignIn } from "Contracts/interface";
 
 export default class SignInFeature {
   protected data;
   constructor(data) {
     this.data = data;
   }
-  async sign_in({ auth }) {
+  static async sign_in(data: ISignIn) {
     // console.log("auth >> ", auth);
 
-    const { username, email, password } = this.data;
+    const { username, email, password, auth } = data;
 
     // console.log("kk >> ", email, username, password);
 

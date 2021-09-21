@@ -12,6 +12,7 @@ export default class Transactions extends BaseSchema {
       table.float('amount').notNullable()
       table.enum('status', Object.values(TransactionStatus)).defaultTo(TransactionStatus.PENDING).nullable()
       table.enum('entity', Object.values(TransactionEntity)).notNullable()
+      table.text('payload')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

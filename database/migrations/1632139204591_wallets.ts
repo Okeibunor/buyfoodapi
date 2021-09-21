@@ -7,7 +7,7 @@ export default class Wallets extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id').notNullable()
-      table.float('amount').notNullable()
+      table.decimal('amount', 19, 2).defaultTo(0).notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

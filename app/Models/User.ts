@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import {
+  afterCreate,
   BaseModel,
   beforeSave,
   column,
@@ -8,6 +9,8 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import Hash from "@ioc:Adonis/Core/Hash";
 import Product from "./Product";
+import Wallet from "./Wallet";
+import WalletService from "App/Features/Core/WalletManagement";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -46,6 +49,11 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
+  @afterCreate()
+  public static async createWallet(user: User) {
+    WalletService.create_wallet({user_id: user.id})
+  }
+
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.password) {
@@ -53,9 +61,9 @@ export default class User extends BaseModel {
     }
   }
 
-  @hasOne(() => Product, {
+  @hasOne(() => Wallet, {
     localKey: "id",
     foreignKey: "user_id",
   })
-  public product: HasOne<typeof Product>;
+  public product: HasOne<typeof Wallet>;
 }

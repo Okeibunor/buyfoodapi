@@ -1,5 +1,5 @@
 import BaseSchema from "@ioc:Adonis/Lucid/Schema";
-import { UserType } from "Contracts/enum";
+import { Gender, UserType } from "Contracts/enum";
 // import Database from "@ioc:Adonis/Lucid/Database";
 
 export default class Users extends BaseSchema {
@@ -14,11 +14,13 @@ export default class Users extends BaseSchema {
       table.string("remember_me_token", 255);
       table
         .enum("type", Object.values(UserType))
-        .defaultTo(UserType.ADMIN)
+        .defaultTo(UserType.USER)
         .nullable();
       table.string("first_name").notNullable();
       table.string("last_name").notNullable();
-      table.string("gender", 255);
+      table
+        .enum("gender", Object.values(Gender))
+        .notNullable();
       table.string("contact_number", 255);
       table.string("address", 255);
       table.timestamp("created_at").defaultTo(this.now());

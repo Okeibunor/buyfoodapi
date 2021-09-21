@@ -1,5 +1,5 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
-import { TransactionStatus } from 'Contracts/enum'
+import { TransactionStatus, TransactionType } from 'Contracts/enum'
 import { TransactionEntity } from 'Contracts/enum'
 export default class Transactions extends BaseSchema {
   protected tableName = 'transactions'
@@ -12,6 +12,7 @@ export default class Transactions extends BaseSchema {
       table.float('amount').notNullable()
       table.enum('status', Object.values(TransactionStatus)).defaultTo(TransactionStatus.PENDING).nullable()
       table.enum('entity', Object.values(TransactionEntity)).notNullable()
+      table.enum('type', Object.values(TransactionType)).defaultTo(TransactionType.CREDIT).nullable()
       table.text('payload')
       table.bigInteger('payment_date')
       table.timestamp('created_at', { useTz: true })

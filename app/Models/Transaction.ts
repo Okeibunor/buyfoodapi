@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
-import { TransactionEntity, TransactionStatus } from 'Contracts/enum';
+import { TransactionEntity, TransactionStatus, TransactionType } from 'Contracts/enum';
 
 export default class Transaction extends BaseModel {
   @column({ isPrimary: true })
@@ -17,6 +17,9 @@ export default class Transaction extends BaseModel {
 
   @column()
   public status: TransactionStatus;
+
+  @column()
+  public type: TransactionType;
 
   @column()
   public entity: TransactionEntity;

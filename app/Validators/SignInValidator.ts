@@ -44,7 +44,7 @@ export default class SignInValidator {
     "*": (field, rule) => {
       return `${rule} validation error on ${field}`;
     },
-    required: "The {{ field }} is required to register",
+    required: "The {{ field }} is required to sign in",
     "email.email": "Email must be a valid email format",
   };
 }

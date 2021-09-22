@@ -16,6 +16,10 @@ export enum TransactionEntity {
   PAYOUTS = "payouts",
   WALLETTRANSFERS = "wallettransfers"
 }
+export enum TransactionType {
+  CREDIT = "credit",
+  DEBIT = "debit",
+}
 
 export enum Gender {
   MALE = "male",

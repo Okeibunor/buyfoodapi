@@ -1,7 +1,7 @@
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
-export default class CreateProductValidator {
+export default class VerifyPaymentValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,11 +24,7 @@ export default class CreateProductValidator {
    *    ```
    */
   public schema = schema.create({
-    product_category_id: schema.number(),
-    product_sub_category_id: schema.number(),
-    title: schema.string({ trim: true }, [rules.required()]),
-    description: schema.string({ trim: true }, [rules.required()]),
-    price: schema.number(),
+    reference: schema.string({ trim: true }, [rules.required()]),
   });
 
   /**
@@ -46,6 +42,6 @@ export default class CreateProductValidator {
     "*": (field, rule) => {
       return `${rule} validation error on ${field}`;
     },
-    required: "The {{ field }} is required to create product sub category",
+    required: "The {{ field }} is required to fund wallet",
   };
 }

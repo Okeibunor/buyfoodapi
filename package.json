@@ -22,6 +22,7 @@
     "@adonisjs/core": "^5.1.8",
     "@adonisjs/lucid": "^15.0.2",
     "@adonisjs/repl": "^3.1.4",
+    "axios": "^0.21.4",
     "luxon": "^1.27.0",
     "mysql": "^2.18.1",
     "phc-bcrypt": "^1.0.7",

@@ -25,5 +25,5 @@ import "./app_routes/core.route";
 import "./app_routes/payment.route";
 
 Route.get("/", async () => {
-  return { hello: "Welcome to Bimbi API" };
+  return { hello: "Welcome to BuyFood API" };
 });

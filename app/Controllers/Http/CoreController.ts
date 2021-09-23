@@ -10,61 +10,63 @@ import WalletTransferValidator from "App/Validators/WalletTransferValidator";
 import WalletWithdrawalValidator from "App/Validators/WalletWithdrawalValidator";
 
 export default class CoreController {
-    public async wallet_funding({ request, auth, response }) {
-        const props = await request.validate(WalletFundingValidator);
-        
-        let createResponse = await PaymentService.initiate_payment(props, auth.user);
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
-    public async wallet_transfer({ request, auth, response }) {
-        const props = await request.validate(WalletTransferValidator);
-        
-        let createResponse = await WalletService.transfer_money(props, auth.user);
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
-    public async wallet_withdrawal({ request, auth, response }) {
-        const props = await request.validate(WalletWithdrawalValidator);
-        
-        let createResponse = await WalletService.wallet_withdrawal(props, auth.user);
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
-    public async create_beneficiary({ request, auth, response }) {
-        const props = await request.validate(CreatebeneficiaryValidator);
-        
-        let createResponse = await BeneficiaryService.create_beneficiary({...props, user_id:auth.user.id});
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
-    public async remove_beneficiary({ auth, response, params: {beneficiary_id} }) {
-        let createResponse = await BeneficiaryService.remove_beneficiary(auth.user, beneficiary_id);
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
-    public async get_beneficiaries({ auth, response }) {
-        let createResponse = await BeneficiaryService.get_beneficiaries(auth.user);
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
-    public async get_beneficiary({ auth, response, params: {beneficiary_id} }) {
-        let createResponse = await BeneficiaryService.get_beneficiary(auth.user, beneficiary_id);
-    
-        return response
-          .status(createResponse.status_code)
-          .send(createResponse);
-      }
+  public async wallet_funding({ request, auth, response }) {
+    const props = await request.validate(WalletFundingValidator);
+
+    let createResponse = await PaymentService.initiate_payment(props, auth.user);
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
+  public async wallet_transfer({ request, auth, response }) {
+    const props = await request.validate(WalletTransferValidator);
+
+    let createResponse = await WalletService.transfer_money(props, auth.user);
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
+  public async wallet_withdrawal({ request, response }) {
+    // public async wallet_withdrawal({ request, auth, response }) {
+    const props = await request.validate(WalletWithdrawalValidator);
+
+    let createResponse = await WalletService.wallet_withdrawal(props);
+    // let createResponse = await WalletService.wallet_withdrawal(props, auth.user);
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
+  public async create_beneficiary({ request, auth, response }) {
+    const props = await request.validate(CreatebeneficiaryValidator);
+
+    let createResponse = await BeneficiaryService.create_beneficiary({ ...props, user_id: auth.user.id });
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
+  public async remove_beneficiary({ auth, response, params: { beneficiary_id } }) {
+    let createResponse = await BeneficiaryService.remove_beneficiary(auth.user, beneficiary_id);
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
+  public async get_beneficiaries({ auth, response }) {
+    let createResponse = await BeneficiaryService.get_beneficiaries(auth.user);
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
+  public async get_beneficiary({ auth, response, params: { beneficiary_id } }) {
+    let createResponse = await BeneficiaryService.get_beneficiary(auth.user, beneficiary_id);
+
+    return response
+      .status(createResponse.status_code)
+      .send(createResponse);
+  }
 }

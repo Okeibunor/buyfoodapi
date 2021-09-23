@@ -2,69 +2,62 @@ import { AuthContract } from "@ioc:Adonis/Addons/Auth";
 import { TransactionEntity, TransactionStatus, TransactionType } from "./enum";
 
 export interface ISignUp {
-    username: string
-    email: string
-    first_name: string
-    last_name: string
-    password: string
-    gender: string
-    contact_number: string
-    address?: string
-  }
+  email: string
+  password: string
+}
 export interface ISignIn {
-    username?: string
-    email?: string
-    password: string
-    auth: AuthContract
-  }
+  email?: string
+  password: string
+  auth: AuthContract
+}
 export interface IWalletCreation {
-    user_id: number
-  }
+  user_id: number
+}
 export interface IWalletCredit {
-    user_id: number,
-    amount: number
-  }
+  user_id: number,
+  amount: number
+}
 export interface IWalletTransfer {
-    email: string,
-    amount: number
-  }
+  email: string,
+  amount: number
+}
 export interface IWalletFunding {
-    amount: number,
-    reference: string
-  }
+  amount: number,
+  reference: string
+}
 export interface ICreateTransaction {
-    user_id: number,
-    reference: string,
-    amount: number,
-    status: TransactionStatus,
-    entity: TransactionEntity,
-    payload?: string,
-    payment_date?: number,
-    type: TransactionType
-  }
+  user_id: number,
+  reference: string,
+  amount: number,
+  status: TransactionStatus,
+  entity: TransactionEntity,
+  payload?: string,
+  payment_date?: number,
+  type: TransactionType
+}
 export interface IInitializePayment {
-    amount: number,
-    reference: string
-    user_id: number
-    email: string
-    entity: TransactionEntity
-  }
+  amount: number,
+  reference: string
+  user_id: number
+  email: string
+  entity: TransactionEntity
+}
 export interface IBeneficiaryCreation {
-    user_id: number,
-    account_number: string
-    bank_name: string
-    bank_code: string
-  }
+  user_id: number,
+  account_number: string
+  bank_name: string
+  bank_code: string
+}
 export interface ITransferRecipient {
-    type: string,
-    name: string
-    account_number: string
-    bank_code: string
-    currency: string
-  }
+  type: string,
+  name: string
+  account_number: string
+  bank_code: string
+  currency: string
+}
 export interface IWalletWithdrawal {
-    amount: number,
-    name: string
-    account_number: string
-    bank_code: string
-  }
+  amount: number,
+  name: string
+  account_number: string
+  bank_code: string
+}

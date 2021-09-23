@@ -17,26 +17,14 @@ export default class SignUpFeature {
   }
   static async sign_up(data: ISignUp) {
     const {
-      first_name,
-      last_name,
       email,
-      contact_number,
-      gender,
-      username,
       password,
-      address,
     } = data;
 
     try {
       const new_user = await User.create({
-        first_name,
-        last_name,
         email,
-        contact_number,
-        gender,
-        username,
         password,
-        address,
       });
 
       return CreateOperationResponse({

@@ -17,7 +17,7 @@ import {
 import {
   IWalletCreation,
   IWalletCredit,
-  IWalletFunding,
+  // IWalletFunding,
   IWalletTransfer,
   IWalletWithdrawal,
 } from "Contracts/interface";
@@ -187,7 +187,7 @@ export default class WalletService {
     }
   }
 
-  static async wallet_withdrawal(data: IWalletWithdrawal, user: User) {
+  static async wallet_withdrawal(data: IWalletWithdrawal) {
     //  const {
     //    reference, amount
     //  } = data;
@@ -207,8 +207,8 @@ export default class WalletService {
 
       console.log("create_recipient >> ", create_recipient);
 
-      console.log(create_recipient.results.recipient_code, data.amount );
-      
+      console.log(create_recipient.results.recipient_code, data.amount);
+
 
       const create_transfer = await PaystackService.transfer(
         create_recipient.results.recipient_code,

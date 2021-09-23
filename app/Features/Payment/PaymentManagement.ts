@@ -36,7 +36,7 @@ export default class PaymentService {
     return process_initial_payment;
   }
 
-  static async verify_payment(reference: string, user: User) {
+  static async verify_payment(reference: string) {
     // console.log(user);
 
     try {
@@ -51,14 +51,14 @@ export default class PaymentService {
       }
 
       const {
-        channel,
+        // channel,
         metadata,
-        authorization,
-        customer,
+        // authorization,
+        // customer,
         amount,
-        reference: payment_reference,
-        currency,
-        ip_address,
+        // reference: payment_reference,
+        // currency,
+        // ip_address,
       } = process_verify_payment.results.data;
 
       console.log("amount >> ", amount, reference);

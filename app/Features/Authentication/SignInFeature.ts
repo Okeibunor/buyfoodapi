@@ -20,17 +20,17 @@ export default class SignInFeature {
   static async sign_in(data: ISignIn) {
     // console.log("auth >> ", auth);
 
-    const { username, email, password, auth } = data;
+    const { email, password, auth } = data;
 
     // console.log("kk >> ", email, username, password);
 
     try {
-      if (!username && !email) {
+      if (!email) {
         return CreateOperationResponse({
           results: null,
           label: `Sign in`,
           statusCode: 400,
-          message: `Email or username is required`,
+          message: `Email is required`,
         });
       }
       let get_user_prom = User.query();
@@ -38,9 +38,9 @@ export default class SignInFeature {
       if (email) {
         get_user_prom.where("email", email);
       }
-      if (username && !email) {
-        get_user_prom.where("username", username);
-      }
+      // if (!email) {
+      //   get_user_prom.where("username", username);
+      // }
 
       const get_user = await get_user_prom.first();
 

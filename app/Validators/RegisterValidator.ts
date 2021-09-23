@@ -1,9 +1,9 @@
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { Gender } from "Contracts/enum";
+// import { Gender } from "Contracts/enum";
 
 export default class RegisterValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -25,18 +25,10 @@ export default class RegisterValidator {
    *    ```
    */
   public schema = schema.create({
-    first_name: schema.string({ trim: true }, [rules.required()]),
-    last_name: schema.string({ trim: true }, [rules.required()]),
-    address: schema.string.optional({ trim: true }, []),
-    username: schema.string({ trim: true }, [
-      rules.unique({ table: "users", column: "username" }),
-    ]),
     email: schema.string({ trim: true }, [
       rules.email(),
       rules.unique({ table: "users", column: "email" }),
     ]),
-    gender: schema.enum(Object.values(Gender)),
-    contact_number: schema.string({ trim: true }, [rules.required()]),
     password: schema.string({ trim: true }, [rules.required()]),
   });
 
@@ -58,6 +50,5 @@ export default class RegisterValidator {
     required: "The {{ field }} is required to register",
     "email.email": "Email must be a valid email format",
     "email.unique": "Email must be unique",
-    "username.unique": "Username must be unique",
   };
 }

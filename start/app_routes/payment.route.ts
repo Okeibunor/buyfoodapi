@@ -17,6 +17,6 @@ Route.group(() => {
   .prefix("/api/v1/transaction");
 
 Route.group(() => {
-  Route.post("/webhook", "Payment/ProcessPaymentsController.webhook");
+  Route.get("/webhook", "Payment/ProcessPaymentsController.webhook");
 })
   .prefix("/api/v1/transaction");

@@ -200,7 +200,7 @@ export default class PaymentService {
   }
   static async webhook(request) {
     try {
-      console.log("request >> ", request.body());
+      // console.log("request >> ", request.body());
 
       const data = request.body();
 

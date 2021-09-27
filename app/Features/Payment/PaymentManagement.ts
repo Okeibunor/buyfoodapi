@@ -8,8 +8,9 @@
 
 import Transaction from "App/Models/Transaction";
 import User from "App/Models/User";
+import Wallet from "App/Models/Wallet";
 import CreateOperationResponse from "App/Utilities/CreateOperationResponse";
-import { TransactionEntity, TransactionStatus } from "Contracts/enum";
+import { TransactionEntity, TransactionStatus, TransactionType } from "Contracts/enum";
 import { ICreateTransaction, IWalletFunding } from "Contracts/interface";
 import WalletService from "../Core/WalletManagement";
 import PaystackService from "./Paystack";
@@ -195,6 +196,77 @@ export default class PaymentService {
         results: null,
         message: `Error in processing fetch transaction`,
       });
+    }
+  }
+  static async webhook(request) {
+    try {
+      console.log("request >> ", request.body());
+
+      const data = request.body();
+
+      switch (data) {
+        case "charge.success":
+          const { data: event_data } = data;
+          const {
+            amount,
+            reasons,
+            reference,
+            status,
+            created_at,
+            updated_at,
+            transfer_code,
+            recipient: {
+              currency,
+              metadata,
+              name,
+              type,
+              recipient_code,
+              details,
+            },
+          } = event_data;
+
+          const trnx_payload = {
+            currency,
+            name,
+            type,
+            recipient_code,
+            transfer_code,
+            details,
+            updated_at,
+            created_at,
+            status,
+            reasons,
+          };
+
+          const get_user_wallet = (await Wallet.query()
+            .where("user_id", metadata.user_id)
+            .first()) as Wallet;
+
+          get_user_wallet.amount = Number(get_user_wallet.amount) - Number(amount);
+
+          await get_user_wallet.save();
+
+          await Transaction.create({
+            type: TransactionType.DEBIT,
+            amount,
+            reference,
+            entity: TransactionEntity.WALLETWITHDRAWALS,
+            status: TransactionStatus.SUCCESSFUL,
+            user_id: metadata.user_id,
+            payment_date: Date.now(),
+            payload: JSON.stringify(trnx_payload),
+          });
+
+          break;
+        // case "transfer.success":
+        //   // Webhook to check if transaction is not verified.
+        //   break;
+
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }

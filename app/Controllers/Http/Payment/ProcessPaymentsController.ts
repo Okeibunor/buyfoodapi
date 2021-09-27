@@ -22,4 +22,8 @@ export default class ProcessPaymentsController {
       .status(createResponse?.status_code)
       .send(createResponse);
   }
+  public async webhook({ request }) {
+    await PaymentService.webhook(request);
+
+  }
 }

@@ -239,11 +239,11 @@ export default class PaystackService {
       });
     }
   }
-  static async transfer_recipient(data: ITransferRecipient) {
+  static async transfer_recipient(data: ITransferRecipient, user_id: number) {
     try {
       const transferRecipient: any = await axios.post(
         `${paystackConfig["transferRecipientEndpoint"]}`,
-        data,
+        {...data, metadata: {user_id}},
         {
           headers: {
             authorization: `Bearer ${paystackConfig["secret"]}`,
@@ -285,6 +285,7 @@ export default class PaystackService {
           amount,
           recipient: recipient,
           reason: "Transfer",
+          
         },
         {
           headers: {

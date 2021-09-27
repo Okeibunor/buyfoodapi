@@ -14,7 +14,8 @@ export enum TransactionStatus {
 export enum TransactionEntity {
   WALLETFUNDING = "walletfunding",
   PAYOUTS = "payouts",
-  WALLETTRANSFERS = "wallettransfers"
+  WALLETTRANSFERS = "wallettransfers",
+  WALLETWITHDRAWALS = "walletwithdrawals"
 }
 export enum TransactionType {
   CREDIT = "credit",

@@ -187,7 +187,7 @@ export default class WalletService {
     }
   }
 
-  static async wallet_withdrawal(data: IWalletWithdrawal) {
+  static async wallet_withdrawal(data: IWalletWithdrawal, user: User) {
     //  const {
     //    reference, amount
     //  } = data;
@@ -198,8 +198,8 @@ export default class WalletService {
         name: data.name,
         account_number: data.account_number,
         bank_code: data.bank_code,
-        currency: "NGN",
-      });
+        currency: "NGN"
+      }, user.id);
 
       if (create_recipient.status_code !== 200) {
         return create_recipient;

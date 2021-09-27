@@ -28,11 +28,11 @@ export default class CoreController {
       .status(createResponse.status_code)
       .send(createResponse);
   }
-  public async wallet_withdrawal({ request, response }) {
+  public async wallet_withdrawal({ request, response, auth }) {
     // public async wallet_withdrawal({ request, auth, response }) {
     const props = await request.validate(WalletWithdrawalValidator);
 
-    let createResponse = await WalletService.wallet_withdrawal(props);
+    let createResponse = await WalletService.wallet_withdrawal(props, auth.user);
     // let createResponse = await WalletService.wallet_withdrawal(props, auth.user);
 
     return response

@@ -16,7 +16,7 @@ Route.group(() => {
   .middleware("auth")
   .prefix("/api/v1/transaction");
 
-  Route.group(() => {
-    Route.get("/webhook", "Payment/ProcessPaymentsController.webhook");
-  })
-    .prefix("/api/v1/transaction");
+Route.group(() => {
+  Route.post("/webhook", "Payment/ProcessPaymentsController.webhook");
+})
+  .prefix("/api/v1/transaction");

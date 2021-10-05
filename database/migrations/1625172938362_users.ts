@@ -13,7 +13,6 @@ export default class Users extends BaseSchema {
       table.timestamp("created_at").defaultTo(this.now());
       table
         .timestamp("updated_at")
-        .defaultTo(this.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     });
   }
 

@@ -1,4 +1,4 @@
-# Bimbi-API-Test
+# BuyFood-API-Test
 
 ### Steps to start
 
@@ -38,11 +38,11 @@ Please ensure your postman documentation is attached unless your submission will
 
 ### Links
 
-[Postman Documentation](https://documenter.getpostman.com/view/5258371/Tzm2HxPm)
+[Postman Documentation](https://documenter.getpostman.com/view/11000176/UUy4d5t6)
 
-[Github Link](https://github.com/nedu10/Bimbi-API-Test)
+[Github Link](https://github.com/Okeibunor/buyfoodapi/)
 
-[Phpmyadmin DB](https://phpmyadmin-c010.cloudclusters.net/index.php)
+[Phpmyadmin DB](https://phpmyadmin-c006.cloudclusters.net/index.php)
 
-[Live API link](https://bimbi-api.herokuapp.com/)
+[Live API link](https://buyfood1832.herokuapp.com/)
 # buyfoodapi

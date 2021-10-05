@@ -11,8 +11,7 @@ export default class Users extends BaseSchema {
       table.string("password", 180).notNullable();
       table.string("remember_me_token", 255);
       table.timestamp("created_at").defaultTo(this.now());
-      table
-        .timestamp("updated_at")
+      table.timestamp("updated_at");
     });
   }
 

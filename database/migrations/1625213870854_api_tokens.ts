@@ -12,9 +12,7 @@ export default class ApiTokens extends BaseSchema {
       table.string("type");
       table.timestamp("created_at").defaultTo(this.now());
       table.dateTime("expires_at").defaultTo(null);
-      table
-        .timestamp("updated_at")
-        .defaultTo(this.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
+      table.timestamp("updated_at");
     });
   }
 
